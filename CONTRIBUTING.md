@@ -1,0 +1,3 @@
+# Contributing
+
+All new changes should be developed on a separate feature, fix, or documentation branch instead of directly on the main branch. Feature branches will use names such as `feature/<description>`, while bug fixes will use `fix/<description>` and documentation changes will use `docs/<description>`. Changes should be committed using clear and meaningful commit messages. Completed work should be submitted through a Pull Request for review before being merged into the main branch.
