@@ -34,7 +34,7 @@ public void addScore(double score) {
     }
     this.scores.add(score);
 }
-public double getAverage() {
+public double calculateAverage() {
     if (scores.isEmpty()) {
         return 0.0;
     }
