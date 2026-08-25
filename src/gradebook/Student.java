@@ -19,4 +19,11 @@ public class Student {
     public String getStudentId() { return studentId; }
     public void setStudentId(String studentId) { this.studentId = studentId; }
     public List<Double> getScores() { return scores; }
+
+    public List<Double> getScores() { return scores; }
+
+public void addScore(double score) {
+    // Implementation will go here
+}
+}
 }
