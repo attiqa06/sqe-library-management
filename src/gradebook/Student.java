@@ -23,7 +23,8 @@ public class Student {
     public List<Double> getScores() { return scores; }
 
 public void addScore(double score) {
-    // Implementation will go here
-}
+    if (score < 0) {
+        throw new IllegalArgumentException("Score cannot be negative");
+    }
 }
 }
