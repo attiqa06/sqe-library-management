@@ -22,8 +22,14 @@ public class Student {
 
     public List<Double> getScores() { return scores; }
 
+/**
+ * Add a score to the student's scores list.
+ * 
+ * @param score The score to add. Must be non-negative (>= 0).
+ * @throws IllegalArgumentException if the score is negative.
+ */
 public void addScore(double score) {
-     if (score < 0) {
+    if (score < 0) {
         throw new IllegalArgumentException("Score cannot be negative");
     }
     this.scores.add(score);
