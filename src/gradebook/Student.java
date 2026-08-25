@@ -34,4 +34,14 @@ public void addScore(double score) {
     }
     this.scores.add(score);
 }
+public double calculateAverage() {
+    if (scores.isEmpty()) {
+        return 0.0;
+    }
+    double sum = 0;
+    for (double score : scores) {
+        sum += score;
+    }
+    return sum / scores.size();
+}
 }
