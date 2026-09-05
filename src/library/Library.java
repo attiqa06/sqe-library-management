@@ -12,9 +12,15 @@ public class Library {
         this.members = new ArrayList<>();
     }
 
-    public void addBook(Book book) {
-        books.add(book);
+   public void addBook(Book book) {
+    for (Book existingBook : books) {
+        if (existingBook.getIsbn().equals(book.getIsbn())) {
+            System.out.println("A book with this ISBN already exists!");
+            return;
+        }
     }
+    books.add(book);
+}
 
     public Book findBook(String isbn) {
         for (Book book : books) {
