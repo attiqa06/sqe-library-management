@@ -68,27 +68,34 @@
 
 ---
 
-### Final Decision:
+### Final Decision Summary:
 
-| Issue | Decision | Status | Reason |
-|-------|----------|--------|--------|
-| #1 | Fix Now | In Progress | Critical severity, data corruption |
-| #3 | Fix Now | In Progress | High severity, business rule violation |
-| #2 | Fix Now | In Progress | High severity, data integrity |
-| #4 | Defer | Wontfix (this sprint) | Low severity, low risk, revisit in Sprint 2 |
-| #5 | Wontfix | Wontfix (this sprint) | Low impact, usability only |
+| Issue | Title | Decision | Status | Justification |
+|-------|-------|----------|--------|---------------|
+| #1 | Negative available_copies allowed | Fix Now | In Progress | Critical severity, data corruption |
+| #2 | Duplicate ISBNs accepted | Fix Now | In Progress | High severity, data integrity issue |
+| #3 | Member can borrow past allowed limit | Fix Now | In Progress | High severity, business rule violation |
+| #4 | Incorrect rounding of late fees | Defer | Wontfix | Low severity, can be fixed next sprint |
+| #5 | Case-sensitive title search bug | Wontfix | Wontfix | Low impact, usability only |
 
-### Summary:
+---
 
-**Fixed this sprint (3 issues):**
-- Issue #1: Negative available_copies allowed
-- Issue #2: Duplicate ISBNs accepted
-- Issue #3: Member can borrow past allowed limit
+### Sprint Planning Summary:
 
-**Deferred/Wontfix (2 issues):**
-- Issue #4: Incorrect rounding of late fees (deferred to next sprint)
-- Issue #5: Case-sensitive title search (wontfix - low impact)
+**Will be fixed in this sprint (3 issues - 60%):**
+- ✅ Issue #1: Negative available_copies allowed (Critical/High)
+- ✅ Issue #2: Duplicate ISBNs accepted (High/Medium)
+- ✅ Issue #3: Member can borrow past allowed limit (High/Medium)
 
-**Total Issues:** 5
-**Fixed:** 3 (60%)
-**Deferred:** 2 (40%)
+**Deferred to future sprints (2 issues - 40%):**
+- ⏳ Issue #4: Incorrect rounding of late fees (Low/Medium)
+- ⏳ Issue #5: Case-sensitive title search bug (Low/Low)
+
+---
+
+### Risk Assessment:
+- **Critical risks resolved:** Negative inventory bug (Issue #1) will be fixed immediately
+- **Medium risks remaining:** Duplicate ISBNs (Issue #2) and borrowing limits (Issue #3) will be fixed within sprint
+- **Low risks remaining:** Fine rounding (Issue #4) and search (Issue #5) are deferred
+
+**Overall Assessment:** Core functionality is safe after fixing the 3 priority issues.
