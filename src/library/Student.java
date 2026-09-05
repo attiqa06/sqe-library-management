@@ -45,3 +45,7 @@ public double calculateAverage() {
     return sum / scores.size();
 }
 }
+"// wip" 
+"// fix typo" 
+"// more fixes" 
+"// done" 
