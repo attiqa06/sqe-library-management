@@ -27,15 +27,47 @@
 
 ### Trade-off Analysis (Severity vs Priority):
 
-**Issue #1 vs Issue #2:**
+#### Trade-off 1: Issue #1 (Critical/High) vs Issue #2 (High/High)
 
-Both issues are High Priority, but Issue #1 has Critical Severity while Issue #2 has High Severity. 
-- **Trade-off:** Issue #1 causes an application crash (Critical Severity), which completely breaks functionality. Even though both are High Priority, the crash must be fixed first because it makes the software unusable. The negative score bug (Issue #2) is still important but data can be manually corrected until the fix is applied.
+Both issues have High Priority, but their Severity levels differ:
 
-**Issue #3 vs Issue #4:**
+| Issue | Severity | Priority | Impact |
+|-------|----------|----------|--------|
+| #1 | Critical | High | Application crash, complete failure of core feature |
+| #2 | High | High | Data corruption, incorrect calculations |
 
-Issue #3 has High Severity but Medium Priority, while Issue #4 has Low Severity but Medium Priority.
-- **Trade-off:** Even though Issue #4 is easier to fix and is a clean mathematical fix, Issue #3 is more important because it affects data integrity (duplicate roll numbers). We will fix Issue #4 before Issue #3 because it's a quick win with less risk, but both are Medium Priority.
+**Trade-off Decision:**
+- Issue #1 takes priority even though both have High Priority
+- **Why:** Critical Severity means the application becomes completely unusable. A crash on a core feature is a showstopper that affects ALL users. Issue #2, while serious (data corruption), doesn't prevent the application from running. Users can temporarily work around the negative score issue by being careful, but they cannot work around a crash.
+- **Conclusion:** Fix Issue #1 first, then Issue #2 immediately after.
+
+---
+
+#### Trade-off 2: Issue #3 (High/Medium) vs Issue #4 (Low/Medium)
+
+Both issues have Medium Priority, but their Severity levels differ:
+
+| Issue | Severity | Priority | Impact |
+|-------|----------|----------|--------|
+| #3 | High | Medium | Data integrity issue, duplicate roll numbers allowed |
+| #4 | Low | Medium | Mathematical inaccuracy, affects grade boundaries |
+
+**Trade-off Decision:**
+- Issue #4 will be fixed before Issue #3, even though Issue #3 has higher Severity
+- **Why:** This is a "quick win" scenario. Issue #4 is a simple one-line change (fixing integer division to proper rounding). It has low risk and can be implemented quickly. Issue #3 requires more complex changes (adding uniqueness validation, database constraints, error handling) and carries higher risk of introducing new bugs. By fixing Issue #4 first, we get a clean, easy victory while planning a proper fix for Issue #3 in the next sprint.
+- **Conclusion:** Fix Issue #4 now (quick win), defer Issue #3 to next sprint with proper planning.
+
+---
+
+#### Summary of Final Decision:
+
+| Fix Order | Issue | Reason |
+|-----------|-------|--------|
+| 1st | #1 | Critical severity, causes crash |
+| 2nd | #2 | High severity, data corruption |
+| 3rd | #4 | Quick win, low risk, affects grades |
+| Deferred | #3 | Complex fix, needs more planning |
+| Wontfix | #5 | Low impact, usability only |
 
 ---
 
