@@ -31,3 +31,4 @@
 - **Positive Test Cases:** 8 (TC-01, TC-04, TC-06, TC-08, TC-10, TC-11, TC-12, plus TC-01 is positive)
 - **Negative Test Cases:** 4 (TC-02, TC-03, TC-05, TC-07, TC-09) → *Meets the requirement of at least 3 negative cases.*
 - **Functional Coverage:** Book addition, borrowing, returning, limit enforcement, and fine calculation.
+| TC-13 | Register a new member successfully | REQ-6 | System has no members registered yet. | 1. `Member member = new Member(1, "Ali Khan", "ali@email.com");` <br> 2. `library.registerMember(member);` <br> 3. Check member count. | Member is registered successfully. Member count becomes 1. No exception thrown. | High | Functional / Positive |
