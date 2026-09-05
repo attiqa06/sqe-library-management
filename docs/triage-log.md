@@ -1,4 +1,4 @@
-# Triage Meeting Log - GradeBook Issues
+# Triage Meeting Log - LibraryHub Issues
 
 ## Date: [Insert Today's Date]
 
@@ -6,11 +6,11 @@
 
 | Issue # | Title | Severity | Priority | Status |
 |---------|-------|----------|----------|--------|
-| #1 | Crash on Class Average Calculation with No Students Enrolled | Critical | High | Open |
-| #2 | Negative Scores Accepted for Assignments | High | High | Open |
-| #3 | Duplicate Roll Numbers Permitted | High | Medium | Open |
-| #4 | Incorrect Rounding of Averages (89.5 → 89) | Low | Medium | Open |
-| #5 | Search Function Case-Sensitive | Low | Low | Open |
+| #1 | Negative available_copies allowed when borrowing books | Critical | High | Open |
+| #2 | Duplicate ISBNs accepted in library system | High | Medium | Open |
+| #3 | Member can borrow past allowed limit | High | Medium | Open |
+| #4 | Incorrect rounding of late fees | Low | Medium | Open |
+| #5 | Case-sensitive title search bug | Low | Low | Open |
 
 ---
 
@@ -18,64 +18,53 @@
 
 | Rank | Issue # | Title | Reason for Ranking |
 |------|---------|-------|-------------------|
-| 1 | #1 | Crash on Class Average Calculation with No Students Enrolled | Critical severity - causes application crash, makes software unusable |
-| 2 | #2 | Negative Scores Accepted for Assignments | High severity - corrupts data integrity, visible to users |
-| 3 | #4 | Incorrect Rounding of Averages (89.5 → 89) | Medium priority - clean fix, affects grade boundaries |
-| 4 | #3 | Duplicate Roll Numbers Permitted | High severity but medium priority - data integrity issue but no crash |
-| 5 | #5 | Search Function Case-Sensitive | Low severity and low priority - usability issue only |
+| 1 | #1 | Negative available_copies allowed when borrowing books | Critical severity - causes data corruption (negative inventory) |
+| 2 | #3 | Member can borrow past allowed limit | High severity - violates business rules, affects fair book distribution |
+| 3 | #2 | Duplicate ISBNs accepted in library system | High severity - data integrity issue but no crash |
+| 4 | #4 | Incorrect rounding of late fees | Medium priority - affects revenue but low severity |
+| 5 | #5 | Case-sensitive title search bug | Low severity and low priority - usability issue only |
+
 ---
 
 ### Trade-off Analysis (Severity vs Priority):
 
-#### Trade-off 1: Issue #1 (Critical/High) vs Issue #2 (High/High)
-
-Both issues have High Priority, but their Severity levels differ:
+#### Trade-off 1: Issue #1 (Critical/High) vs Issue #3 (High/Medium)
 
 | Issue | Severity | Priority | Impact |
 |-------|----------|----------|--------|
-| #1 | Critical | High | Application crash, complete failure of core feature |
-| #2 | High | High | Data corruption, incorrect calculations |
+| #1 | Critical | High | Allows negative inventory, corrupts library data |
+| #3 | High | Medium | Violates business rules, unfair borrowing |
 
 **Trade-off Decision:**
-- Issue #1 takes priority even though both have High Priority
-- **Why:** Critical Severity means the application becomes completely unusable. A crash on a core feature is a showstopper that affects ALL users. Issue #2, while serious (data corruption), doesn't prevent the application from running. Users can temporarily work around the negative score issue by being careful, but they cannot work around a crash.
-- **Conclusion:** Fix Issue #1 first, then Issue #2 immediately after.
+- Issue #1 takes priority because it allows negative inventory which can corrupt the entire library database
+- Issue #3 is important but doesn't corrupt data - it's a business rule violation
+- **Conclusion:** Fix Issue #1 first (data integrity), then Issue #3 (business rules)
 
 ---
 
-#### Trade-off 2: Issue #3 (High/Medium) vs Issue #4 (Low/Medium)
-
-Both issues have Medium Priority, but their Severity levels differ:
+#### Trade-off 2: Issue #2 (High/Medium) vs Issue #4 (Low/Medium)
 
 | Issue | Severity | Priority | Impact |
 |-------|----------|----------|--------|
-| #3 | High | Medium | Data integrity issue, duplicate roll numbers allowed |
-| #4 | Low | Medium | Mathematical inaccuracy, affects grade boundaries |
+| #2 | High | Medium | Duplicate ISBNs cause book retrieval confusion |
+| #4 | Low | Medium | Financial inaccuracy, affects revenue |
 
 **Trade-off Decision:**
-- Issue #4 will be fixed before Issue #3, even though Issue #3 has higher Severity
-- **Why:** This is a "quick win" scenario. Issue #4 is a simple one-line change (fixing integer division to proper rounding). It has low risk and can be implemented quickly. Issue #3 requires more complex changes (adding uniqueness validation, database constraints, error handling) and carries higher risk of introducing new bugs. By fixing Issue #4 first, we get a clean, easy victory while planning a proper fix for Issue #3 in the next sprint.
-- **Conclusion:** Fix Issue #4 now (quick win), defer Issue #3 to next sprint with proper planning.
-
----
-
-#### Summary of Final Decision:
-
-| Fix Order | Issue | Reason |
-|-----------|-------|--------|
-| 1st | #1 | Critical severity, causes crash |
-| 2nd | #2 | High severity, data corruption |
-| 3rd | #4 | Quick win, low risk, affects grades |
-| Deferred | #3 | Complex fix, needs more planning |
-| Wontfix | #5 | Low impact, usability only |
+- Issue #2 will be fixed before Issue #4
+- **Why:** While both are Medium priority, Issue #2 has Higher severity (data integrity). Duplicate ISBNs can cause serious confusion when members try to borrow books. Issue #4 is a mathematical inaccuracy that is low risk but can be deferred.
+- **Conclusion:** Fix Issue #2 first, then Issue #4
 
 ---
 
 ### Issues Marked as "Won't Fix" This Sprint:
 
-**Issue #5 - Search Function Case-Sensitive**
+**Issue #4 - Incorrect rounding of late fees**
 - **Status:** `status:wontfix`
-- **Reason:** This is a usability issue with Low Severity and Low Priority. It doesn't affect core functionality, data integrity, or cause crashes. Can be deferred to next sprint without impacting GradeBook's main features. Users can work around this by typing the correct case.
+- **Reason:** Low severity issue that affects fine amounts but doesn't break core functionality. Can be deferred to next sprint.
+
+**Issue #5 - Case-sensitive title search bug**
+- **Status:** `status:wontfix`
+- **Reason:** Low severity and Low priority - this is a usability issue only. Users can work around by typing exact case. Can be deferred to a later sprint.
 
 ---
 
@@ -83,24 +72,23 @@ Both issues have Medium Priority, but their Severity levels differ:
 
 | Issue | Decision | Status | Reason |
 |-------|----------|--------|--------|
-| #1 | Fix Now | In Progress | Critical severity, application crash |
-| #2 | Fix Now | In Progress | High severity, data corruption |
-| #4 | Fix Now | In Progress | Quick win, low risk, affects grades |
-| #3 | Defer | Wontfix (this sprint) | Complex fix, needs more planning, revisit in Sprint 2 |
+| #1 | Fix Now | In Progress | Critical severity, data corruption |
+| #3 | Fix Now | In Progress | High severity, business rule violation |
+| #2 | Fix Now | In Progress | High severity, data integrity |
+| #4 | Defer | Wontfix (this sprint) | Low severity, low risk, revisit in Sprint 2 |
 | #5 | Wontfix | Wontfix (this sprint) | Low impact, usability only |
 
 ### Summary:
 
 **Fixed this sprint (3 issues):**
-- Issue #1: Crash on empty score list
-- Issue #2: Negative scores accepted
-- Issue #4: Incorrect rounding of averages
+- Issue #1: Negative available_copies allowed
+- Issue #2: Duplicate ISBNs accepted
+- Issue #3: Member can borrow past allowed limit
 
 **Deferred/Wontfix (2 issues):**
-- Issue #3: Duplicate roll numbers allowed (deferred to next sprint)
-- Issue #5: Case-sensitive search (wontfix - low impact)
+- Issue #4: Incorrect rounding of late fees (deferred to next sprint)
+- Issue #5: Case-sensitive title search (wontfix - low impact)
 
 **Total Issues:** 5
 **Fixed:** 3 (60%)
 **Deferred:** 2 (40%)
----
