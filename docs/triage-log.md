@@ -16,12 +16,13 @@
 
 ### Ranking (From Highest to Lowest Priority to Fix):
 
-1. **Issue #1** - Crash on Class Average Calculation with No Students Enrolled
-2. **Issue #2** - Negative Scores Accepted for Assignments
-3. **Issue #4** - Incorrect Rounding of Averages
-4. **Issue #3** - Duplicate Roll Numbers Permitted
-5. **Issue #5** - Search Function Case-Sensitive
-
+| Rank | Issue # | Title | Reason for Ranking |
+|------|---------|-------|-------------------|
+| 1 | #1 | Crash on Class Average Calculation with No Students Enrolled | Critical severity - causes application crash, makes software unusable |
+| 2 | #2 | Negative Scores Accepted for Assignments | High severity - corrupts data integrity, visible to users |
+| 3 | #4 | Incorrect Rounding of Averages (89.5 → 89) | Medium priority - clean fix, affects grade boundaries |
+| 4 | #3 | Duplicate Roll Numbers Permitted | High severity but medium priority - data integrity issue but no crash |
+| 5 | #5 | Search Function Case-Sensitive | Low severity and low priority - usability issue only |
 ---
 
 ### Trade-off Analysis (Severity vs Priority):
