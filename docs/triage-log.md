@@ -81,6 +81,26 @@ Both issues have Medium Priority, but their Severity levels differ:
 
 ### Final Decision:
 
-We will fix **Issues #1, #2, and #4** in this sprint. Issues #3 and #5 will be deferred (Issue #3 to next sprint, Issue #5 marked as wontfix for now).
+| Issue | Decision | Status | Reason |
+|-------|----------|--------|--------|
+| #1 | Fix Now | In Progress | Critical severity, application crash |
+| #2 | Fix Now | In Progress | High severity, data corruption |
+| #4 | Fix Now | In Progress | Quick win, low risk, affects grades |
+| #3 | Defer | Wontfix (this sprint) | Complex fix, needs more planning, revisit in Sprint 2 |
+| #5 | Wontfix | Wontfix (this sprint) | Low impact, usability only |
 
+### Summary:
+
+**Fixed this sprint (3 issues):**
+- Issue #1: Crash on empty score list
+- Issue #2: Negative scores accepted
+- Issue #4: Incorrect rounding of averages
+
+**Deferred/Wontfix (2 issues):**
+- Issue #3: Duplicate roll numbers allowed (deferred to next sprint)
+- Issue #5: Case-sensitive search (wontfix - low impact)
+
+**Total Issues:** 5
+**Fixed:** 3 (60%)
+**Deferred:** 2 (40%)
 ---
