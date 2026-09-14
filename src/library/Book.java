@@ -20,7 +20,7 @@ public class Book {
     public String getAuthor() { return author; }
     public int getTotalCopies() { return totalCopies; }
     public int getAvailableCopies() { return availableCopies; }
-    
+
     public void setAvailableCopies(int availableCopies) {
         this.availableCopies = availableCopies;
     }
