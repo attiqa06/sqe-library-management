@@ -71,8 +71,8 @@ public class Library {
         }
 
         if (borrowedCount >= 5) {
-            System.out.println("Borrowing limit exceeded!");
-            return;
+            throw new IllegalStateException(
+                "Borrowing limit exceeded: member " + memberId + " already has 5 books on loan");
         }
 
         // Borrow the book
