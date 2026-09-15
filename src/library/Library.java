@@ -25,6 +25,19 @@ public class Library {
         }
     }
 
+    // Validate ISBN: must be exactly 13 numeric digits, no letters or symbols
+    public static boolean validateIsbn(String isbn) {
+        if (isbn == null || isbn.length() != 13) {
+            return false;
+        }
+        for (int i = 0; i < isbn.length(); i++) {
+            if (!Character.isDigit(isbn.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // Add a book to the catalog
     public void addBook(Book book) {
         // Check for duplicate ISBN

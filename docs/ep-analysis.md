@@ -24,7 +24,7 @@ system behaviour.
 | # | Class | Range | Representative Value | Valid/Invalid | Expected Result |
 |---|-------|-------|----------------------|----------------|------------------|
 | 1 | Within limit | 0–5 books currently on loan | 3 (borrowing a 4th) | Valid | Borrow succeeds |
-| 2 | At/above limit | 6+ books currently on loan | 5 (attempting a 6th) | Invalid | Borrow rejected / `ValueError`-style exception |
+| 2 | At/above limit | 6+ books currently on loan | 5 (attempting a 6th) | Invalid | Borrow rejected / `IllegalStateException` |
 
 *Note:* the representative for class 1 should also include the edge case
 of a member at exactly 5 books borrowing their 5th (still within the
@@ -59,3 +59,30 @@ off-by-one error at those boundaries. This gap is intentionally left open
 here and closed in Lab 6 using Boundary Value Analysis (BVA), which
 specifically targets the minimum, maximum, and just-inside/just-outside
 values of each class.
+
+## Test Run Summary
+
+Full `mvn test` run covering all three inputs — `fineTier` (Task 2),
+borrow limit (Task 3), and `validateIsbn` (Task 4). All 13 EP tests pass:
+
+```
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running library.J_test_borrow_limit
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.885 s -- in library.J_test_borrow_limit
+[INFO] Running library.J_test_fine_tier
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 s -- in library.J_test_fine_tier
+[INFO] Running library.J_test_fine_tier_negative
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in library.J_test_fine_tier_negative
+[INFO] Running library.J_test_validate_isbn
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in library.J_test_validate_isbn
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+```
