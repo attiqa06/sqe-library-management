@@ -20,6 +20,13 @@
       <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
+    <!-- Lab 7 Task 3: mocking. 5.19.0+ bundles a Byte Buddy that understands newer JDKs. -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.19.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -42,6 +49,8 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
         <configuration>
+          <!-- Safety net for very new JDKs (e.g. 25) that Byte Buddy may not list yet. -->
+          <argLine>-Dnet.bytebuddy.experimental=true</argLine>
           <!-- J_test_fine_tier.java doesn't match Surefire's default Test*/​*Test
                naming patterns, so it's listed explicitly here alongside the
                standard patterns for any test files you add later. -->

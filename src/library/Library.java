@@ -1,5 +1,8 @@
 package library;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,6 +102,38 @@ public class Library {
         System.out.println("Returning book...");
         // Simple implementation - just return 0.0 fine for now
         return 0.0;
+    }
+
+    // Lab 7 Task 2: sum of available copies across every book in the catalog
+    public int totalAvailableCopies() {
+        int total = 0;
+        for (Book b : catalog) {
+            total += b.getAvailableCopies();
+        }
+        return total;
+    }
+
+    // Lab 7 Task 3: write the catalog to disk, one line per book:
+    // title,isbn,author,availableCopies
+    public void exportCatalog(String path) {
+        StringBuilder content = new StringBuilder();
+        for (Book b : catalog) {
+            content.append(b.getTitle()).append(',')
+                   .append(b.getIsbn()).append(',')
+                   .append(b.getAuthor()).append(',')
+                   .append(b.getAvailableCopies()).append('\n');
+        }
+        try (Writer writer = openWriter(path)) {
+            writer.write(content.toString());
+        } catch (IOException e) {
+            throw new LibraryIOException("Could not export catalog to " + path, e);
+        }
+    }
+
+    // The single place a file is opened. Package-private so tests can
+    // replace it (the Java equivalent of mocking Python's open()).
+    Writer openWriter(String path) throws IOException {
+        return new FileWriter(path);
     }
 
     // Get catalog (for testing)
