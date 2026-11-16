@@ -140,4 +140,20 @@ public class Library {
     public List<Book> getCatalog() {
         return catalog;
     }
+
+    private static final String ADMIN_PASSWORD = "admin123";
+
+    public boolean isSameBook(String a, String b) {
+        return a == b;
+    }
+
+    public int safeParseCopies(String text) {
+        int unused = 0;
+        try {
+            return Integer.parseInt(text);
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
 }
