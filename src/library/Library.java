@@ -10,6 +10,7 @@ public class Library {
     private static final int LOW_MAX_DAYS = 7;
     private static final int MEDIUM_MAX_DAYS = 14;
     private static final int HIGH_MAX_DAYS = 30;
+    private static final int MAX_BORROWED_BOOKS = 5;
     private List<Book> catalog = new ArrayList<>();
     private List<LibraryMember> members = new ArrayList<>();
     private List<Integer> borrowedBooks = new ArrayList<>();
@@ -21,11 +22,11 @@ public class Library {
         if (daysOverdue == 0) {
             return "None";
         } else if (daysOverdue <= LOW_MAX_DAYS) {
-        return "Low";
+            return "Low";
         } else if (daysOverdue <= MEDIUM_MAX_DAYS) {
-        return "Medium";
+            return "Medium";
         } else if (daysOverdue <= HIGH_MAX_DAYS) {
-        return "High";
+            return "High";
         } else {
             return "Severe";
         }
@@ -64,7 +65,6 @@ public class Library {
 
     // Borrow a book
     public void borrowBook(int memberId, String isbn) {
-        private static final int MAX_BORROWED_BOOKS = 5;
         // Find the book
         Book bookToBorrow = null;
         for (Book b : catalog) {
@@ -84,7 +84,7 @@ public class Library {
             return;
         }
 
-        // Check member borrowing limit (assuming limit is 5)
+        // Check member borrowing limit
         int borrowedCount = 0;
         for (int id : borrowedBooks) {
             if (id == memberId) borrowedCount++;
@@ -145,44 +145,40 @@ public class Library {
         return catalog;
     }
 
-   private static final String ADMIN_PASSWORD = "admin123";
-
     public boolean isSameBook(String a, String b) {
-       return a != null && a.equals(b);
+        return a != null && a.equals(b);
     }
 
-   public int safeParseCopies(String text) {
-    try {
-        return Integer.parseInt(text);
-    } catch (NumberFormatException e) {
-        return 0;
+    public int safeParseCopies(String text) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
-}
 
-
-        public int firstTitleLength(String isbn) {
+    public int firstTitleLength(String isbn) {
         Book found = null;
         for (Book b : catalog) {
             if (b.getIsbn().equals(isbn)) {
                 found = b;
             }
         }
-       if (found == null) {
-    return 0;
-}
-    return found.getTitle().length();
+        if (found == null) {
+            return 0;
+        }
+        return found.getTitle().length();
     }
 
     public boolean sameValue(int x, int y) {
-    return x == y;
-}
+        return x == y;
+    }
 
     public String trimTitle(String title) {
-    return title.trim();
-}
+        return title.trim();
+    }
 
     public void removeMember(int id) {
-    borrowedBooks.remove(Integer.valueOf(id));
-}
-    
+        borrowedBooks.remove(Integer.valueOf(id));
+    }
 }
