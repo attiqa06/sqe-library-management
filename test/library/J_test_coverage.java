@@ -40,4 +40,15 @@ public class J_test_coverage {
         assertEquals(1, member.getId());
         assertEquals("alice@example.com", member.getEmail());
     }
+
+        // --- Task 4: Coverage Trap ---
+    @Test
+    public void weakTestForAddBook() {
+        // This test achieves coverage but is a coverage trap
+        // It doesn't assert the state of the catalog.
+        Library lib = new Library();
+        // Just calling the method covers the lines
+        lib.getCatalog(); 
+    }
+
 }
