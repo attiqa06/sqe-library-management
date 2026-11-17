@@ -31,3 +31,15 @@ New tests were added in `test/library/J_test_coverage.java` to target the untest
 After running the new tests, overall coverage improved:
 - Baseline: 30% Line, 64% Branch
 - After Task 3: 37% Line, 71% Branch
+
+## Task 4: Coverage vs. Quality
+
+**The Coverage Trap:**
+An example of a "coverage trap" in the suite was a test that called `lib.addBook(newBook)` but only asserted that no exception was thrown (or just checked that the catalog wasn't null). 
+While this executes the lines in `addBook()`, it provides zero protection against bugs where the book is silently dropped, or the wrong object is added to the catalog. A test could pass even if `addBook()` was completely broken and did nothing.
+
+**The Fix (Strengthened Test):**
+The test was strengthened to assert the actual state change: `assertEquals(initialSize + 1, lib.getCatalog().size())`. 
+This converts a meaningless "line coverage" test into a behavioral test that protects the integrity of the system. It proves that coverage quantity (just hitting the lines) is not the same as test quality (verifying the behavior).
+
+
