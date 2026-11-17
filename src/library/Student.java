@@ -46,9 +46,5 @@ public class Student {
         return sum / scores.size();
     }
 
-    public void untestedMethod() {
-        System.out.println("This method has no tests.");
-        System.out.println("It will lower the coverage.");
-    }
 
 }
