@@ -175,8 +175,8 @@ public class Library {
     return title.trim();
 }
 
-    public void removeMember(String id) {
-        borrowedBooks.remove(id);
-    }
+    public void removeMember(int id) {
+    borrowedBooks.remove(Integer.valueOf(id));
+}
     
 }
