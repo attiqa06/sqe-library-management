@@ -64,6 +64,7 @@ public class Library {
 
     // Borrow a book
     public void borrowBook(int memberId, String isbn) {
+        private static final int MAX_BORROWED_BOOKS = 5;
         // Find the book
         Book bookToBorrow = null;
         for (Book b : catalog) {
@@ -89,9 +90,9 @@ public class Library {
             if (id == memberId) borrowedCount++;
         }
 
-        if (borrowedCount >= 5) {
+        if (borrowedCount >= MAX_BORROWED_BOOKS) {
             throw new IllegalStateException(
-                "Borrowing limit exceeded: member " + memberId + " already has 5 books on loan");
+                "Borrowing limit exceeded: member " + memberId + " already has " + MAX_BORROWED_BOOKS + " books on loan");
         }
 
         // Borrow the book
