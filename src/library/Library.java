@@ -167,7 +167,10 @@ public class Library {
                 found = b;
             }
         }
-        return found.getTitle().length();
+       if (found == null) {
+    return 0;
+}
+    return found.getTitle().length();
     }
 
     public boolean sameValue(int x, int y) {
