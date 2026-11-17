@@ -156,4 +156,27 @@ public class Library {
         return 0;
     }
 
+
+        public int firstTitleLength(String isbn) {
+        Book found = null;
+        for (Book b : catalog) {
+            if (b.getIsbn().equals(isbn)) {
+                found = b;
+            }
+        }
+        return found.getTitle().length();
+    }
+
+    public boolean sameValue(int x) {
+        return x == x;
+    }
+
+    public void trimTitle(String title) {
+        title.trim();
+    }
+
+    public void removeMember(String id) {
+        borrowedBooks.remove(id);
+    }
+    
 }
