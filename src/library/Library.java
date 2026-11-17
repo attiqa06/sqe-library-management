@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Library {
+    private static final int LOW_MAX_DAYS = 7;
+    private static final int MEDIUM_MAX_DAYS = 14;
+    private static final int HIGH_MAX_DAYS = 30;
     private List<Book> catalog = new ArrayList<>();
     private List<LibraryMember> members = new ArrayList<>();
     private List<Integer> borrowedBooks = new ArrayList<>();
@@ -17,12 +20,12 @@ public class Library {
         }
         if (daysOverdue == 0) {
             return "None";
-        } else if (daysOverdue <= 7) {
-            return "Low";
-        } else if (daysOverdue <= 14) {
-            return "Medium";
-        } else if (daysOverdue <= 30) {
-            return "High";
+        } else if (daysOverdue <= LOW_MAX_DAYS) {
+        return "Low";
+        } else if (daysOverdue <= MEDIUM_MAX_DAYS) {
+        return "Medium";
+        } else if (daysOverdue <= HIGH_MAX_DAYS) {
+        return "High";
         } else {
             return "Severe";
         }
