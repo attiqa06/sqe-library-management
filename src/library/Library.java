@@ -167,9 +167,9 @@ public class Library {
         return found.getTitle().length();
     }
 
-    public boolean sameValue(int x) {
-        return x == x;
-    }
+    public boolean sameValue(int x, int y) {
+    return x == y;
+}
 
     public void trimTitle(String title) {
         title.trim();
