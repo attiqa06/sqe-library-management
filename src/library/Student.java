@@ -1,49 +1,48 @@
 package library;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class J_test_coverage {
+public class Student {
+    private String name;
+    private String idNumber;  // Renamed from studentId
+    private List<Double> scores;
 
-    // --- Closing gaps for Student.java ---
-    @Test
-    public void testStudentMethods() {
-        // The constructor takes (String name, String idNumber)
-        Student student = new Student("Alice", "101");
-        
-        // Cover getters
-        assertEquals("Alice", student.getName());
-        assertEquals("101", student.getIdNumber());
-        
-        // Cover setters
-        student.setName("Bob");
-        student.setIdNumber("102");
-        assertEquals("Bob", student.getName());
-        assertEquals("102", student.getIdNumber());
-
-        // Cover addScore and calculateAverage
-        student.addScore(90.0);
-        student.addScore(80.0);
-        assertEquals(85.0, student.calculateAverage(), 0.01);
-
-        // Cover getScores
-        assertNotNull(student.getScores());
-        assertEquals(2, student.getScores().size());
-        
-        // Cover the exception branch in addScore
-        assertThrows(IllegalArgumentException.class, () -> {
-            student.addScore(-10.0);
-        });
+    public Student(String name, String idNumber) {
+        this.name = name;
+        this.idNumber = idNumber;
+        this.scores = new ArrayList<>();
     }
 
-    // --- Closing gaps for LibraryMember.java ---
-    @Test
-    public void testLibraryMemberGetters() {
-        // Assuming LibraryMember has a constructor (int, String, String) based on your code
-        LibraryMember member = new LibraryMember(1, "Alice", "alice@example.com");
-        
-        // Cover getId() and getEmail() which were red
-        assertEquals(1, member.getId());
-        assertEquals("alice@example.com", member.getEmail());
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getIdNumber() { return idNumber; }
+    public void setIdNumber(String idNumber) { this.idNumber = idNumber; }
+
+    public List<Double> getScores() { return scores; }
+
+    /**
+     * Add a score to the student's scores list.
+     *
+     * @param score The score to add. Must be non-negative (>= 0).
+     * @throws IllegalArgumentException if the score is negative.
+     */
+    public void addScore(double score) {
+        if (score < 0) {
+            throw new IllegalArgumentException("Score cannot be negative");
+        }
+        this.scores.add(score);
+    }
+
+    public double calculateAverage() {
+        if (scores.isEmpty()) {
+            return 0.0;
+        }
+        double sum = 0;
+        for (double score : scores) {
+            sum += score;
+        }
+        return sum / scores.size();
     }
 }
