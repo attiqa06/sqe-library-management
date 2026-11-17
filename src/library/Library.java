@@ -171,9 +171,9 @@ public class Library {
     return x == y;
 }
 
-    public void trimTitle(String title) {
-        title.trim();
-    }
+    public String trimTitle(String title) {
+    return title.trim();
+}
 
     public void removeMember(String id) {
         borrowedBooks.remove(id);
