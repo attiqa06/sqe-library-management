@@ -27,3 +27,8 @@ jobs:
           -Dsonar.projectKey=attiqa06_sqe-library-management
           -Dsonar.organization=attiqa06
           -Dsonar.host.url=https://sonarcloud.io
+      - name: Upload JaCoCo Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
