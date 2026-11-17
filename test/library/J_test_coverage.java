@@ -41,14 +41,18 @@ public class J_test_coverage {
         assertEquals("alice@example.com", member.getEmail());
     }
 
-        // --- Task 4: Coverage Trap ---
+            // --- Task 4: Strengthened Test (Fixing the Coverage Trap) ---
     @Test
-    public void weakTestForAddBook() {
-        // This test achieves coverage but is a coverage trap
-        // It doesn't assert the state of the catalog.
+    public void testAddBookStrengthened() {
         Library lib = new Library();
-        // Just calling the method covers the lines
-        lib.getCatalog(); 
+        int initialSize = lib.getCatalog().size();
+        
+        Book newBook = new Book("123-456", "Test Book", "Test Author");
+        lib.addBook(newBook);
+        
+        // Strong assertion: Check that the book was actually added
+        assertEquals(initialSize + 1, lib.getCatalog().size());
+        assertEquals("Test Book", lib.getCatalog().get(initialSize).getTitle());
     }
 
 }
