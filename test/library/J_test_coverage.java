@@ -41,13 +41,14 @@ public class J_test_coverage {
         assertEquals("alice@example.com", member.getEmail());
     }
 
-            // --- Task 4: Strengthened Test (Fixing the Coverage Trap) ---
+    // --- Task 4: Strengthened Test (Fixing the Coverage Trap) ---
     @Test
     public void testAddBookStrengthened() {
         Library lib = new Library();
         int initialSize = lib.getCatalog().size();
         
-        Book newBook = new Book("123-456", "Test Book", "Test Author", 1);
+        // Swapped "Test Book" and "123-456" to match the actual constructor
+        Book newBook = new Book("Test Book", "123-456", "Test Author", 1);
         lib.addBook(newBook);
         
         // Strong assertion: Check that the book was actually added
