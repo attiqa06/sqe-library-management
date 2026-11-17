@@ -144,7 +144,7 @@ public class Library {
     private static final String ADMIN_PASSWORD = "admin123";
 
     public boolean isSameBook(String a, String b) {
-        return a == b;
+       return a != null && a.equals(b);
     }
 
     public int safeParseCopies(String text) {
