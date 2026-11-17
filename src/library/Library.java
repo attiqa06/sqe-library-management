@@ -151,14 +151,13 @@ public class Library {
        return a != null && a.equals(b);
     }
 
-    public int safeParseCopies(String text) {
-        int unused = 0;
-        try {
-            return Integer.parseInt(text);
-        } catch (Exception e) {
-        }
+   public int safeParseCopies(String text) {
+    try {
+        return Integer.parseInt(text);
+    } catch (NumberFormatException e) {
         return 0;
     }
+}
 
 
         public int firstTitleLength(String isbn) {
