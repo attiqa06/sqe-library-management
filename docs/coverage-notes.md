@@ -43,3 +43,12 @@ The test was strengthened to assert the actual state change: `assertEquals(initi
 This converts a meaningless "line coverage" test into a behavioral test that protects the integrity of the system. It proves that coverage quantity (just hitting the lines) is not the same as test quality (verifying the behavior).
 
 
+## Task 5: Enforce Coverage Threshold
+
+A coverage threshold was added to the JaCoCo Maven plugin in `pom.xml` to prevent the build from passing if coverage regresses. 
+
+- **Threshold set:** 30% line coverage (since the current achieved coverage is 37%).
+- **Verification:** The build was temporarily configured with a 90% threshold, and the GitHub Actions pipeline successfully failed (turned red), proving the enforcement works.
+- **Final state:** The threshold was restored to 30%, and the pipeline is passing (green).
+
+
