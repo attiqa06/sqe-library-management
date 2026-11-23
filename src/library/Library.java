@@ -195,6 +195,6 @@ public class Library {
             }
             if (c < cnt) below++;
         }
-        return below / members.size() * 100;
+                return members.isEmpty() ? 0.0 : (double) below / members.size() * 100;
     }
 }
