@@ -14,6 +14,7 @@ public class Library {
     private List<Book> catalog = new ArrayList<>();
     private List<LibraryMember> members = new ArrayList<>();
     private List<Integer> borrowedBooks = new ArrayList<>();
+    private static final double PERCENT_MULTIPLIER = 100.0;
 
     public static String fineTier(int daysOverdue) {
         if (daysOverdue < 0) {
@@ -180,5 +181,36 @@ public class Library {
 
     public void removeMember(int id) {
         borrowedBooks.remove(Integer.valueOf(id));
+    }
+
+            /**
+     * Returns the percentage of members who borrowed fewer books than the given member.
+     * Members with the same number of loans are not counted as "below".
+     *
+     * @param memberId id of the member to rank
+     * @return a value from 0.0 to 100.0, or 0.0 when the library has no members
+     */
+    public double borrowPercentile(int memberId) {
+        if (members.isEmpty()) {
+            return 0.0;
+        }
+        int memberLoanCount = countLoans(memberId);
+        int membersWithFewerLoans = 0;
+        for (LibraryMember m : members) {
+            if (countLoans(m.getId()) < memberLoanCount) {
+                membersWithFewerLoans++;
+            }
+        }
+        return (double) membersWithFewerLoans / members.size() * PERCENT_MULTIPLIER;
+    }
+
+    private int countLoans(int memberId) {
+        int count = 0;
+        for (int id : borrowedBooks) {
+            if (id == memberId) {
+                count++;
+            }
+        }
+        return count;
     }
 }
