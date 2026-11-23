@@ -181,4 +181,20 @@ public class Library {
     public void removeMember(int id) {
         borrowedBooks.remove(Integer.valueOf(id));
     }
+
+        public double borrowPercentile(int memberId) {
+        int cnt = 0;
+        for (int id : borrowedBooks) {
+            if (id == memberId) cnt++;
+        }
+        int below = 0;
+        for (LibraryMember m : members) {
+            int c = 0;
+            for (int id : borrowedBooks) {
+                if (id == m.getId()) c++;
+            }
+            if (c < cnt) below++;
+        }
+        return below / members.size() * 100;
+    }
 }
